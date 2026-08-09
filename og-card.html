@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>OG card source — 1200x630</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Source for og-image.png. Regenerate with:
+     chrome --headless=new --screenshot=og-image.png --window-size=1200,630 og-card.html
+     Tokens below mirror index.html's :root. */
+  :root{
+    --paper:#F7F5F0; --ink:#1B1F1E; --ink-soft:#4A5250;
+    --accent:#0E7C66; --accent-deep:#0A5A4B; --accent-soft:#59C2A9;
+    --sand:#E9E2D3;
+    --display:'Fraunces',Georgia,serif;
+    --body:'Archivo',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    font-family:var(--body);color:var(--ink);background:var(--paper);
+    position:relative;isolation:isolate;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:64px 72px;
+  }
+
+  /* Soft background wash, same palette as the hero blobs */
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);z-index:-1}
+  .blob-a{width:520px;height:520px;background:#BFE3D6;opacity:.75;top:-200px;left:-140px}
+  .blob-b{width:460px;height:460px;background:var(--sand);opacity:.75;bottom:-220px;right:-90px}
+  .blob-c{width:320px;height:320px;background:#F3D9C8;opacity:.55;top:22%;right:14%}
+
+  .logo{font-family:var(--display);font-weight:800;font-size:34px;letter-spacing:-.01em;line-height:1}
+  .logo em{font-style:normal;color:var(--accent)}
+
+  .kicker{
+    font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent-deep);margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:82px;line-height:1.04;letter-spacing:-.022em;
+  }
+  .swash{position:relative;display:inline-block;white-space:nowrap}
+  .swash svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.34em;overflow:visible}
+  .swash path{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  .lede{color:var(--ink-soft);font-size:21px;line-height:1.5;max-width:60ch;margin-top:22px}
+
+  .stats{display:flex;align-items:center;gap:48px;border-top:1px solid rgba(27,31,30,.12);padding-top:26px}
+  .stat b{
+    display:block;font-family:var(--display);font-weight:800;font-size:40px;line-height:1;
+    letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  }
+  .stat b .mark{color:var(--accent)}
+  /* Direct child only — a bare `.stat span` would also catch .mark inside <b>. */
+  .stat > span{display:block;margin-top:7px;color:var(--ink-soft);font-size:15px}
+  .divider{width:1px;align-self:stretch;background:rgba(27,31,30,.12)}
+</style>
+</head>
+<body>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+
+  <div class="logo">The<em>Cutroom</em></div>
+
+  <div>
+    <div class="kicker">Video editing studio · Kingston, JA</div>
+    <h1>You shoot it. We
+      <span class="swash">finish<svg viewBox="0 0 220 24" preserveAspectRatio="none">
+        <path d="M6 15 C 38 5, 74 21, 112 13 C 146 6, 172 18, 214 11"/>
+      </svg></span> it.
+    </h1>
+    <p class="lede">Send your raw clips. Get back a finished, ready-to-post video in 7 days or less.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>900<span class="mark">+</span></b><span>videos delivered since 2022</span></div>
+    <div class="divider"></div>
+    <div class="stat"><b>4.9<span class="mark">★</span></b><span>average client rating</span></div>
+    <div class="divider"></div>
+    <div class="stat"><b>7 <span class="mark">days</span></b><span>average turnaround</span></div>
+  </div>
+</body>
+</html>
