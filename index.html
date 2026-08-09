@@ -179,7 +179,9 @@
     font-size:clamp(2.6rem,2rem + 2.6vw,4rem);line-height:1;letter-spacing:-.02em;
     font-variant-numeric:tabular-nums}
   .stat b .mark{color:var(--accent-soft)}
-  .stat span{display:block;margin-top:var(--s1);color:#A9B4B0;font-size:.92rem}
+  /* Direct child only — a bare `.stat span` also matches .cnt and .mark inside <b>,
+     which shrank the headline numbers to label size. */
+  .stat > span{display:block;margin-top:var(--s1);color:#A9B4B0;font-size:.92rem}
 
   /* ---------- Pricing ---------- */
   .tiers{display:grid;gap:var(--s3);grid-template-columns:1fr;margin-top:var(--s4);align-items:stretch}
