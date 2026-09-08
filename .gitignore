@@ -1,2 +1,4 @@
 # Local Claude Code context — kept out of the public repo
 CLAUDE.md
+.vercel
+.env*
