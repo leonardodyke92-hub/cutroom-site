@@ -138,10 +138,34 @@
     box-shadow:0 30px 70px rgba(27,31,30,.18);
   }
   @media (max-width:979px){.hero-figure{aspect-ratio:16/11;max-height:420px}}
-  .hero-figure img{
+  .hero-figure :is(img,video){
+    display:block;
     width:100%;height:118%;object-fit:cover;object-position:center;
     will-change:transform;
   }
+  /* Brand lockup over the hero footage. Lives in HTML rather than burned
+     into the video, so it never gets cropped by object-fit and stays
+     selectable and legible to screen readers. */
+  .hero-lockup{
+    position:absolute;left:0;right:0;top:0;z-index:1;
+    padding:var(--s3) var(--s3) var(--s4);
+    display:flex;flex-direction:column;gap:.15rem;text-align:center;
+    background:linear-gradient(to bottom,rgba(11,26,22,.72) 0%,rgba(11,26,22,.45) 55%,rgba(11,26,22,0) 100%);
+    pointer-events:none;
+  }
+  .hero-lockup-mark{
+    font-family:var(--display);font-weight:800;font-size:1.55rem;
+    letter-spacing:-.01em;line-height:1.1;color:#fff;
+  }
+  .hero-lockup-mark em{font-style:normal;color:var(--accent-soft)}
+  .hero-lockup-line{
+    font-size:.83rem;letter-spacing:.01em;color:rgba(255,255,255,.82);
+  }
+  @media (max-width:979px){
+    .hero-lockup-mark{font-size:1.3rem}
+    .hero-lockup-line{font-size:.78rem}
+  }
+
   .book-card{
     position:absolute;left:-14px;bottom:22px;z-index:2;
     background:rgba(255,255,255,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -332,7 +356,7 @@
     html.js .stickbar{transform:none;transition:none}
     .nudge{transition:none}
     .btn,.step,.tier,.quote{transition:none}
-    .hero-figure img{transform:none !important}
+    .hero-figure :is(img,video){transform:none !important}
   }
 </style>
 </head>
@@ -376,11 +400,16 @@
     </div>
     <div class="hero-media">
       <figure class="hero-figure">
-        <video id="heroImg" autoplay muted loop playsinline width="100%" style="display: block;">
+        <video id="heroImg" autoplay muted loop playsinline preload="auto" aria-hidden="true"
+               poster="/public/videos/hero-poster.jpg">
           <source src="/public/videos/hero-intro.mp4" type="video/mp4">
-          <img src="https://images.unsplash.com/photo-1605826832916-d0ea9d6fe71e?q=70&w=1200&auto=format&fit=crop"
-               alt="Editor working on a video timeline at a studio desk">
+          <img src="/public/videos/hero-poster.jpg"
+               alt="Editor colour-grading a video timeline at a studio desk">
         </video>
+        <figcaption class="hero-lockup">
+          <span class="hero-lockup-mark">The<em>Cutroom</em></span>
+          <span class="hero-lockup-line">You shoot it. We finish it.</span>
+        </figcaption>
       </figure>
       <aside class="book-card">
         <b>Next opening: Monday</b>
@@ -660,6 +689,12 @@
   var pricing  = document.getElementById('pricing');
   var nudgeShown = false, nudgeDismissed = false;
   var ticking = false;
+
+  /* Honour prefers-reduced-motion: hold the hero on its poster frame. */
+  if (heroImg && reduced && typeof heroImg.pause === 'function'){
+    heroImg.removeAttribute('autoplay');
+    heroImg.pause();
+  }
 
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
